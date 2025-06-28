@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { MessageBubble } from "./MessageBubble";
 import { ExpertProfile } from "./ExpertProfile";
 import { ChatInput } from "./ChatInput";
-import { Send } from "lucide-react";
 
 interface Message {
   id: string;
@@ -71,12 +70,12 @@ export const ChatInterface = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+    <div className="h-screen flex flex-col bg-white">
       {/* Expert Profile Header */}
       <ExpertProfile />
       
-      {/* Chat Messages */}
-      <div className="h-96 overflow-y-auto p-6 space-y-4 bg-gray-50">
+      {/* Chat Messages - Takes remaining height */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
         {messages.map((message) => (
           <MessageBubble key={message.id} message={message} />
         ))}
@@ -96,7 +95,7 @@ export const ChatInterface = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Chat Input */}
+      {/* Chat Input - Fixed at bottom */}
       <ChatInput onSendMessage={handleSendMessage} />
     </div>
   );
